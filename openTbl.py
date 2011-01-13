@@ -1,4 +1,5 @@
 from struct import unpack,unpack_from
+import sys
 def readLabVoltTBL(fileName):
     fid = open(fileName)
     ind = 128
@@ -69,13 +70,19 @@ def readLabVoltTBL(fileName):
     out= map(lambda *row: list(row), *output )
     return labels, out
 def usage():
-    print 'usage information'
+    print 'usage: '+sys.argv[0] + ' [option] ... -i inputFile ...'
+    print 'Options and arguments (and corresponding environment variables):'
+    print '-h\t: Help'
+    print '-i file\t: Input File'
+    print '-t\t: Display Titles'
+
 if __name__ == '__main__':
     import getopt
-    import sys
     input_file = ''
-    try: opts, args = getopt.getopt(sys.argv[1:], "hci:",
-            ['help','csv','input='])
+    titles_on = False
+    CSV = False
+    try: opts, args = getopt.getopt(sys.argv[1:], "htci:",
+            ['help','csv','input=', 'titles'])
     except getopt.GetoptError, err:
         print str(err)
         usage()
@@ -85,9 +92,12 @@ if __name__ == '__main__':
             usage()
             sys.exit()
         elif o in ('-c','--csv'):
-            print 'printing csv'
+            CSV = False
+            print 'not printing csv, broken'
         elif o in ('-i','--input'):
             input_file = a
+        elif o in ('-t','--titles'):
+            titles_on = True
         else:
             assert False, "unhanded option"
     if not input_file:
@@ -95,10 +105,22 @@ if __name__ == '__main__':
             usage()
             sys.exit(3)
     labels, out = readLabVoltTBL(input_file)
-    for label in labels:
-        print label,'\t',
-    print ''
-    for x in out:
-        for y in x:
-            print y,'\t',
-        print '\n',
+    if not CSV:
+        if titles_on:
+            for label in labels:
+                print label,'\t',
+        print ''
+        for x in out:
+            for y in x:
+                print y,'\t',
+            print '\n',
+    else:
+        if titles_on:
+            for label in labels:
+                print label,',',
+        print ''
+        for x in out:
+            for y in x:
+                print y,',',
+            print '\n',
+

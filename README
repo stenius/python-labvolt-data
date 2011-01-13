@@ -1,0 +1,62 @@
+This library is used for reading the proprietary TBL files that are generated
+by the Lab Volt software used in my Fundamentals of Power Engineering class at
+Lamar University.
+
+It can be used as a stand alone program for printing or as a library that has functions to
+return a 2-D python list containing the table.
+
+Examples:
+to print to STDIO with column titles from lab_1.tbl run,
+python openTbl.py -ti lab_1.tbl
+[pauls@aqm ~/labVolt]$ python openTbl.py -ti lab_1.tbl
+E1,V    E3,V    I1,A    I2,A    I3,A    PQS1 (E1,I1),W  f (E1),Hz       RXZ (E1,I1),ohms
+30.07   0.05    0.15    0       0       4.48    59.92   201.41
+35.26   0.05    0.18    0       0       6.17    59.93   201.29
+40.85   0.05    0.2     0       0       8.28    59.92   201.36
+44.93   0.05    0.22    0       0       10.03   59.91   201.12
+50.21   0.04    0.25    0       0       12.54   59.89   201.02
+55.12   0.04    0.27    0       0       15.1    59.9    201.11
+60.03   0.05    0.3     0       0       17.92   59.89   201.04
+64.62   0.05    0.32    0       0       20.78   59.9    200.86
+70.08   0.04    0.35    0       0       24.49   59.89   200.55
+75.04   0.05    0.37    0       0       28.06   59.88   200.62
+80.25   0.05    0.4     0       0       32.12   59.88   200.45
+
+to use as a library, 
+In [1]: from openTbl import readLabVoltTBL
+In [2]: labels, data = readLabVoltTBL('lab_1.tbl')
+In [3]: print labels
+['E1,V', 'E3,V', 'I1,A', 'I2,A', 'I3,A', 'PQS1 (E1,I1),W', 'f (E1),Hz', 'RXZ (E1,I1),ohms']
+In [4]: print data
+[[30.07, 0.050000000000000003, 0.14999999999999999, 0, 0, 4.4800000000000004, 59.920000000000002, 201.41], [35.259999999999998, 0.050000000000000003, 0.17999999999999999, 0, 0, 6.1699999999999999, 59.93, 201.28999999999999], [40.850000000000001, 0.050000000000000003, 0.20000000000000001, 0, 0, 8.2799999999999994, 59.920000000000002, 201.36000000000001], [44.93, 0.050000000000000003, 0.22, 0, 0, 10.029999999999999, 59.909999999999997, 201.12], [50.210000000000001, 0.040000000000000001, 0.25, 0, 0, 12.539999999999999, 59.890000000000001, 201.02000000000001], [55.119999999999997, 0.040000000000000001, 0.27000000000000002, 0, 0, 15.1, 59.899999999999999, 201.11000000000001], [60.030000000000001, 0.050000000000000003, 0.29999999999999999, 0, 0, 17.920000000000002, 59.890000000000001, 201.03999999999999], [64.620000000000005, 0.050000000000000003, 0.32000000000000001, 0, 0, 20.780000000000001, 59.899999999999999, 200.86000000000001], [70.079999999999998, 0.040000000000000001, 0.34999999999999998, 0, 0, 24.489999999999998, 59.890000000000001, 200.55000000000001], [75.040000000000006, 0.050000000000000003, 0.37, 0, 0, 28.059999999999999, 59.880000000000003, 200.62], [80.25, 0.050000000000000003, 0.40000000000000002, 0, 0, 32.119999999999997, 59.880000000000003, 200.44999999999999]]
+
+Copyright:
+This code is based off a similar program
+(http://www.mathworks.com/matlabcentral/fileexchange/19666-lab-volt-data-file-reader)
+for use with matlab by Gleb Tcheslavski
+http://www.ee.lamar.edu/gleb/index.htm
+
+Copyright (c) 2011, Paul Stenius
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the <organization> nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

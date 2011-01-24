@@ -1,7 +1,7 @@
 from struct import unpack,unpack_from
 import sys
 def readLabVoltTBL(fileName):
-    fid = open(fileName)
+    fid = open(fileName,'rb')
     ind = 128
     fid.seek(ind)
     a = unpack('c',fid.read(1))[0]
